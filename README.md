@@ -90,7 +90,7 @@ $ django-admin startproject mysite
 ```
 
 >Cambie el directorio externo mysite y ejecute lo siguiente
-``` python
+``` 
 $ python manage.py runserver 'ip:port'
 ```
 
@@ -99,7 +99,7 @@ $ python manage.py runserver 'ip:port'
 ## Crear app en django
 Al crear una app  debemos estar posicionados en la carpeta del proyecto. Ejecutamos el siguiente comando:
 
-``` python
+```
 $ python manage.py startapp 'nombre_app'
 ```
 
@@ -149,5 +149,10 @@ Superuser created successfully
 ```
 $ python manage.py runserver '0:8000'
 ```
+
+En el navegador colocamos la ruta:
+>ip_address:8000/admin
+
+Así ingresamos al panel de admin y hacemos Log in con nuestro usuario admin.
 
 Ya hasta este paso podemos ingresar con nuestro usuario __admin__ al sitio de administrador que nos facilita Django. El paso siguiente es crear modelos, vistas, configurar urls, etc...
