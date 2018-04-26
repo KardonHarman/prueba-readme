@@ -102,3 +102,23 @@ Estando posicionados en la carpeta del proyecto escribimos lo siguiente
 ```
 $ python manage.py startapp 'nombre_app'
 ```
+
+## Creando un usuario del admin
+Primero tendremos que crear un usuario para poder iniciar sesión en el admin. Ejecutamos el siguiente comando:
+```
+$ python manage.py createsuperuser 
+```
+A continuación nos pedirá nuestro nombre de usuario con el cual nos logearemos: 
+```
+Username: admin
+```
+A continuación nos pedirá nuestra dirección de correo:
+```
+Email address: admin@example.com
+```
+El paso final es crear nuestra contraseña para ingresar:
+```
+Password: ***
+Password (again): ***
+Superuser created successfully
+```
