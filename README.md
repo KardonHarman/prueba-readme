@@ -89,7 +89,7 @@ $ django-admin startproject mysite
 
 >Cambie el directorio externo mysite y ejecute lo siguiente
 
-``` python
+```
 $ python manage.py runserver 'ip:port'
 ```
 
@@ -99,6 +99,6 @@ $ python manage.py runserver 'ip:port'
 
 Estando posicionados en la carpeta del proyecto escribimos lo siguiente
 
-``` python
+```
 $ python manage.py startapp 'nombre_app'
 ```
