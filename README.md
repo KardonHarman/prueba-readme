@@ -50,12 +50,15 @@ config.vm.synced_folder  "C:/ruta/proyecto/local", "/home/vagrant/nombre_carpeta
 **activar, si no lo esta.**
 >source 'name'/bin/activate
 
-## Agregar variables de entorno
-
-Al tener las variables de entorno nos dirigimos al archivo ```postactivate``` . Este archivo se encuentre en ```~/.virutalenvs/project_name/bin/postactivate```
-
+```
+(name)vagrant@fernando:-$
 ```
 
+*Para desactivar el entorno virtual usar el comando ```deactivate ```*
+
+## Agregar variables de entorno
+Al tener las variables de entorno nos dirigimos al archivo ```postactivate``` . Este archivo se encuentre en ```~/.virutalenvs/project_name/bin/postactivate```
+```
 #!/bin/bash
 
 export DB_NAME='yourdata'
@@ -77,33 +80,52 @@ export EMAIL_DEFAULT='youremail'
 
 >pip install django
 
-## Instalar Requeriments.txt
+## Instalar requeriments
 
 >pip install -r Requeriments.txt
 
 ## Crear proyecto Django
-
 ```
 $ django-admin startproject mysite
 ```
 
 >Cambie el directorio externo mysite y ejecute lo siguiente
-
-```
+``` python
 $ python manage.py runserver 'ip:port'
 ```
 
 **Bien! Hasta este paso podemos arrancar el servidor correctamente. Sigue crear una app en nuestro proyecto.**
 
 ## Crear app en django
+Al crear una app  debemos estar posicionados en la carpeta del proyecto. Ejecutamos el siguiente comando:
 
-Estando posicionados en la carpeta del proyecto escribimos lo siguiente
-
-```
+``` python
 $ python manage.py startapp 'nombre_app'
 ```
 
-## Creando un usuario del admin
+Al crearse una app, debemos especificarle a django que la integre a nuestro proyecto, desde el ```settings.py ```:
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'appname',
+]
+```
+Ahora django sabe incluir nuestra aplicación.
+Ejecutamos migraciones con el siguiente comando:
+```
+$ python manage.py makemigrations
+```
+Después que creamos una migración la ejecutamos con el siguiente comando para aplicar cambios a la base de datos:
+```
+$ python manage.py migrate
+```
+
+## Crear un usuario del admin
 Primero tendremos que crear un usuario para poder iniciar sesión en el admin. Ejecutamos el siguiente comando:
 ```
 $ python manage.py createsuperuser 
@@ -122,3 +144,10 @@ Password: ***
 Password (again): ***
 Superuser created successfully
 ```
+
+### Iniciamos el servidor
+```
+$ python manage.py runserver '0:8000'
+```
+
+Ya hasta este paso podemos ingresar con nuestro usuario __admin__ al sitio de administrador que nos facilita Django. El paso siguiente es crear modelos, vistas, configurar urls, etc...
