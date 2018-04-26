@@ -1,7 +1,8 @@
 # Instalar Django en vagrant desde cero
 
-Guia de instalacion desde cero
+Guia de instalacion desde cero.
 Crear carpeta donde se alojara el proyecto.
+
 >mkdir 'project_name'
 
 ## Configurar puertos
@@ -9,25 +10,24 @@ Crear carpeta donde se alojara el proyecto.
 Desde el archivo de *vagrantfile* escribir lo siguiente:
 
 ```ruby
-config.vm.network "forwarded_port", guest:80, host: 8080
-config.vm.network "forwarded_port", guest:8000, host: 8081
+
+config.vm.network  "forwarded_port", guest:80, host: 8080
+
+config.vm.network  "forwarded_port", guest:8000, host: 8081
+
 ```
 
 ## Sincronizar carpeta de proyecto desde el vagrantfile
 
 ```ruby
-config.vm.synced_folder "C:/ruta/proyecto/local", "/home/vagrant/nombre_carpeta_proyecto"
+
+config.vm.synced_folder  "C:/ruta/proyecto/local", "/home/vagrant/nombre_carpeta_proyecto"
+
 ```
 
-### Teniendo configurado la carpeta arrancamos vagrant
+**Teniendo sincronizada la carpeta, arrancamos vagrant.**
 
->vagrant up
->
->vagrant ssh
-
-### Dirigirse a la carpeta del proyecto en vagrant
-
->cd project_name/
+**Dirigirse a la carpeta del proyecto en vagrant**  ```$ cd project_name/```
 
 ## Instalar pip en caso de no tenerlo
 
@@ -46,10 +46,32 @@ config.vm.synced_folder "C:/ruta/proyecto/local", "/home/vagrant/nombre_carpeta_
 
 >cd project_name/
 >virtualenv 'name'
-
-**activar si no lo esta*
-
+>
+**activar, si no lo esta.**
 >source 'name'/bin/activate
+
+## Agregar variables de entorno
+
+Al tener las variables de entorno nos dirigimos al archivo ```postactivate``` . Este archivo se encuentre en ```~/.virutalenvs/project_name/bin/postactivate```
+
+```
+
+#!/bin/bash
+
+export DB_NAME='yourdata'
+export DB_USER='yourdata'
+export DB_PASSWORD='yourprivatepassword'
+export SECRET_KEY='youruniqueunpredictablevalue'
+export DB_HOST='yourhost'
+
+#-- secret key EMAIL
+export EMAIL_HOST='yourhost'
+export EMAIL_USER='yourdata'
+export EMAIL_PASSWORD='yourprivatepassword'
+export EMAIL_PORT='port'
+export EMAIL_DEFAULT='youremail'
+
+```
 
 ## Instalar Django con pip
 
@@ -61,16 +83,22 @@ config.vm.synced_folder "C:/ruta/proyecto/local", "/home/vagrant/nombre_carpeta_
 
 ## Crear proyecto Django
 
->django-admin startproject mysite
->
->Cambie el directorio externo mysite y ejecute lo siguiente
->
-> python manage.py runserver 'ip:port'
->
+```
+$ django-admin startproject mysite
+```
 
-Bien! Hasta este paso podemos arrancar el servidor correctamente. Sigue crear una app en nuestro proyecto.
+>Cambie el directorio externo mysite y ejecute lo siguiente
+
+``` python
+$ python manage.py runserver 'ip:port'
+```
+
+**Bien! Hasta este paso podemos arrancar el servidor correctamente. Sigue crear una app en nuestro proyecto.**
 
 ## Crear app en django
 
 Estando posicionados en la carpeta del proyecto escribimos lo siguiente
->python manage.py startapp 'nombre_app'
+
+``` python
+$ python manage.py startapp 'nombre_app'
+```
